@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape From Knob - May</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .investment-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .investment-table td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        .investment-table input {
+            width: 100px;
+            padding: 5px;
+        }
+
+        .investment-table button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .investment-table button:hover {
+            background-color: #0056b3;
+        }
+
+        #investment-results {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #investment-results button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body onload="initMay()">
+    <div class="container">
+        <!-- Left-Side Panel -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <h3>MONTHLY STATEMENT</h3>
+            <h4>May</h4>
+
+            <p><strong>Income</strong></p>
+            <ul>
+                <li>Gross Salary: <span id="gross-salary">$0.00</span></li>
+                <li>Income Tax: <span id="income-tax">$0.00</span></li>
+                <li>Net Income: <span id="net-income">$0.00</span></li>
+            </ul>
+
+            <p><strong>Expenses</strong></p>
+            <ul>
+                <li>Food: <span id="food-expense">$0.00</span></li>
+                <li>Housing: <span id="housing-expense">$0.00</span></li>
+                <li>Transport: <span id="transport-expense">$0.00</span></li>
+                <li>Slime Repellant: <span id="slime-expense">$0.00</span></li>
+                <li><strong>Total Expenses: <span id="total-expenses">$0.00</span></strong></li>
+            </ul>
+
+            <p><strong>Checking Account: <span id="checking-account">$0.00</span></strong></p>
+            <p><strong>Total Cash: <span id="total-cash">$0.00</span></strong></p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header section with image and intro text -->
+            <div class="may-container">
+            
+                <div class="may-header">
+                    <div class="main-content">
+                        <h1>
+                            May: Investing
+                            <span class="info-icon" onclick="toggleInfoPanel()">ⓘ</span>
+                        </h1>
+                    
+                        <div id="info-panel" class="info-panel">
+                            <div class="info-content">
+                                <span class="close-btn" onclick="toggleInfoPanel()">&times;</span>
+                                <h3>What is Investing?</h3>
+                                <p>Investing is putting money into assets with the expectation of generating additional income or profit. Unlike keeping money in a savings account, investing involves taking calculated risks to potentially earn higher returns over time.</p>
+                                <h3>Why Does This Matter?</h3>
+                                <p>Investing is essential for building long-term wealth and achieving financial goals. It helps you to:</p>
+                                <ul>
+                                    <li><strong>Beat Inflation:</strong> While savings accounts offer safety, their low returns might not keep pace with rising prices over time.</li>
+                                    <li><strong>Build Wealth:</strong> Through compound returns, your money can grow exponentially over time.</li>
+                                    <li><strong>Diversify Income:</strong> Having multiple sources of income through investments can provide financial security.</li>
+                                    <li><strong>Achieve Long-term Goals:</strong> Whether it's retirement, education, or major purchases, investing can help you reach your financial targets.</li>
+                                </ul>
+                                <h3>Understanding Risk vs. Return:</h3>
+                                <p>Different investments carry different levels of risk and potential return. Generally, higher potential returns come with higher risks. Here's a typical risk-return relationship:</p>
+                                <ul>
+                                    <li><strong>Low Risk, Low Return:</strong> Bank CDs, savings accounts (2-4% return)</li>
+                                    <li><strong>Medium Risk, Medium Return:</strong> Real estate, corporate bonds (5-8% return)</li>
+                                    <li><strong>High Risk, High Return:</strong> Stocks, startups (potential for 10%+ return but also possible losses)</li>
+                                </ul>
+                                <p>The key to successful investing is finding the right balance between risk and return based on your goals, timeline, and risk tolerance. Remember: never invest more than you can afford to lose, and consider diversifying your investments to spread risk.</p>
+                            </div>
+                        </div>
+                    <img src="https://i.imgur.com/ytq4jL3.jpeg" alt="Investment Plan" class="may-image">
+                    <div class="header-text">
+                        
+                        <p>It's your fifth month on Knab and you've managed to save a little money. It's time to think about investing.</p>
+                    </div>
+                </div>
+            
+                <!-- Investment Options Section -->
+                <div id="investment-section">
+                    <div class="investment-grid">
+                        <div class="investment-option">
+                            <h3>The Knabian Deodorant Factory</h3>
+                            <p>This new, $100 million state-of-the-art factory is ready to churn out thousands of little bottles of Smell-B-Gone® for Him, and Smell-So-Fresh® for Her.</p>
+                            <p><strong>Minimum investment: $2,000</strong></p>
+                            <p>May grow by as much as 90% by July 4th! (But remember, new ventures can be risky!)</p>
+                            <input type="number" id="stockInput" min="0" placeholder="Enter amount (min $2,000)">
+                        </div>
+            
+                        <div class="investment-option">
+                            <h3>Land near the Mercury Sea</h3>
+                            <p>Good property for building homes is hard to come by on Knab. This may be the next big development area!</p>
+                            <p><strong>Minimum investment: $1,000</strong></p>
+                            <p>May result in big profits next month when people start looking in that area for vacant land to build on.</p>
+                            <input type="number" id="realEstateInput" min="0" placeholder="Enter amount (min $1,000)">
+                        </div>
+            
+                        <div class="investment-option">
+                            <h3>The Bank of Knab CD</h3>
+                            <p>A safe investment with guaranteed returns.</p>
+                            <p><strong>Minimum investment: $500</strong></p>
+                            <p>Guaranteed to pay 4% in 30 days.</p>
+                            <input type="number" id="cdInput" min="0" placeholder="Enter amount (min $500)">
+                        </div>
+                    </div>
+                    
+                    <button onclick="calculateMayInvestments()" class="invest-button">Make Investments</button>
+                </div>
+            
+                <!-- Investment Confirmation (Initially Hidden) -->
+                <div id="investment-confirmation" style="display: none;">
+                    <h2>Investment Summary</h2>
+                    <div id="investment-message"></div>
+                    <div id="confirmation-message" style="color: red;"></div>
+                    <button onclick="proceedToJune()" class="proceed-button">Proceed to June</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+</body>
+</html>

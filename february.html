@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Escape From Knob - February</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body onload="initFebruary()">
+    <div class="container">
+        <!-- Left-Side Panel (Personal Info) -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <p><strong>MONTHLY STATEMENT</strong></p>
+            <p><strong>February</strong></p>
+
+            <h4>Income</h4>
+            <p>Gross Salary: <span id="gross-salary"></span></p>
+            <p>Income Tax: <span id="income-tax"></span></p>
+            <p>Net Income: <span id="net-income"></span></p>
+
+            <h4>Expenses</h4>
+            <p>Food: <span id="food-expense"></span></p>
+            <p>Housing (fixed): <span id="housing-expense">0.00</span></p>
+            <p>Transport: <span id="transport-expense">0.00</span></p>
+            <p>Slime Repellent: <span id="slime-expense">0.00</span></p>
+            <p><strong>Total Expenses: <span id="total-expenses">0.00</span></strong></p>
+
+            <p>Checking Account: <span id="checking-account"></span></p>
+            <p><strong>Total Cash:</strong> <span id="total-cash"></span></p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>
+                February: Budgeting
+                <span class="info-icon" onclick="toggleInfoPanel()">ⓘ</span>
+            </h1>
+
+            <div id="info-panel" class="info-panel">
+                <div class="info-content">
+                    <span class="close-btn" onclick="toggleInfoPanel()">&times;</span>
+                    <h3>What is Budgeting?</h3>
+                    <p>Budgeting is the process of creating a plan to spend your money. This spending plan allows you to determine in advance whether you will have enough money to do the things you need to do or would like to do. Budgeting helps you to ensure that you are not spending more money than you have, and it can help you save for future expenses or goals.</p>
+                    <h3>Why Does This Matter?</h3>
+                    <p>Budgeting is crucial for managing your finances effectively. It helps you to:</p>
+                    <ul>
+                        <li><strong>Track Your Income and Expenses:</strong> Knowing where your money comes from and where it goes is the first step in managing your finances.</li>
+                        <li><strong>Avoid Overspending:</strong> By setting limits on your spending, you can avoid going into debt.</li>
+                        <li><strong>Save for the Future:</strong> Budgeting allows you to allocate funds for savings, whether it's for an emergency fund, a big purchase, or long-term goals like retirement.</li>
+                        <li><strong>Make Informed Decisions:</strong> With a clear picture of your financial situation, you can make better decisions about spending, saving, and investing.</li>
+                    </ul>
+                    <h3>Example:</h3>
+                    <p>Imagine you have a monthly income of $1,000. You need to allocate this money for various expenses such as rent, food, transportation, and entertainment. By creating a budget, you can ensure that you cover all your necessary expenses and still have some money left for savings or discretionary spending.</p>
+                    <ul>
+                        <li><strong>Income:</strong> $1,000</li>
+                        <li><strong>Rent:</strong> $400</li>
+                        <li><strong>Food:</strong> $200</li>
+                        <li><strong>Transportation:</strong> $100</li>
+                        <li><strong>Entertainment:</strong> $100</li>
+                        <li><strong>Savings:</strong> $200</li>
+                    </ul>
+                    <p>By sticking to this budget, you ensure that you are living within your means and saving for the future.</p>
+                </div>
+            </div>
+
+            <!-- Table with Photo and Text -->
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://i.imgur.com/U9y5VkA.jpeg" alt="Budget Photo" style="width:120px; height:120px; margin-right: 15px;">
+                    </td>
+                    <td>
+                        <p>Now that you have a steady income, you need to establish a <strong>budget</strong>. You've been living in a knob youth hostel with 40 knobians just beneath the planet's surface.</p>
+                        <p>Establish a budget based on your current situation. And don't forget, your ultimate goal is to save $10,000 for your ticket home!</p>
+                    </td>
+                </tr>
+            </table>
+
+            <form>
+                <div style="margin-bottom: 10px;">
+                    <label for="housing" style="display: inline-block; width: 150px;">Housing (fixed):</label>
+                    <select id="housing" style="width: 180px;" disabled>
+                        <option value="100">$100</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    <label for="foodSelect" style="display: inline-block; width: 150px;">Food:</label>
+                    <select id="foodSelect" style="width: 180px;">
+                        <option value="100">Basic ($100)</option>
+                        <option value="125">Moderate ($125)</option>
+                        <option value="150">Premium ($150)</option>
+                    </select>
+                    <p><i>(It's important to eat enough food, especially on a strange planet)</i></p>
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    <label for="transportSelect" style="display: inline-block; width: 150px;">Transport:</label>
+                    <select id="transportSelect" style="width: 180px;">
+                        <option value="75">Bus Pass ($75)</option>
+                        <option value="150">Private Transport ($150)</option>
+                    </select>
+                    <p><i>(For $75 a month, you can get around on Knob on a Jumbo Vapor Bus. The Bus is a favorite among Knobians, but other beings complain about the poor ventilation. For $150 a month, squeeze into a cab with other Knobians and split the fare.)</i></p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label for="slimeSelect" style="display: inline-block; width: 150px;">Slime Repellent:</label>
+                    <select id="slimeSelect" style="width: 180px;">
+                        <option value="0">None ($0)</option>
+                        <option value="50">Yes ($50)</option>
+                    </select>
+                    <p><i>Increasing your use of Slime Repellent has an amazing impact on your self-esteem, which may improve your performance at work. However, too much Slime Repellent may give you a nasty rash.</i></p>
+                </div>
+
+                <button type="button" onclick="calculateFebruaryExpenses()">Calculate February Expenses</button>
+            </form>
+
+            <!-- Results Section -->
+            <div id="feb-results" style="display:none; margin-top:20px;">
+                <h2>February Results</h2>
+                <p>Gross Income: <span id="feb-gross"></span></p>
+                <p>Income Tax: <span id="feb-tax"></span></p>
+                <p>Net Income: <span id="feb-net"></span></p>
+                <p>Total Expenses: <span id="feb-total-expenses"></span></p>
+                <p><strong>Remaining Checking: <span id="feb-checking"></span></strong></p>
+                <button onclick="proceedToMarch()">Continue to March</button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape From Knob - March</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Flex Layout to keep personal-info on left, main-content on right */
+        .container {
+            display: flex;
+            align-items: flex-start; /* Align both panels at the top */
+            gap: 20px;               /* Spacing between panels */
+        }
+        .personal-info {
+            flex: 0 0 220px;        /* Fixed width for the left panel */
+        }
+        .main-content {
+            flex: 1;                /* The right panel takes remaining space */
+        }
+
+        /* Existing styling for car options, etc. */
+        .car-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .car-option img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+        .car-details {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .calculator-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Ensures the March event container is off-white, not see-through */
+        #event-message {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .housing-option {
+            margin-bottom: 20px; /* Add space between the housing options */
+        }
+
+        .housing-option h3 {
+            margin: 0; /* Remove default margin */
+            list-style-type: none; /* Remove bullet points */
+        }
+
+        .housing-option button {
+            margin-top: 10px; /* Add space between the description and the button */
+        }
+    </style>
+</head>
+<body onload="initMarch()">
+    <div class="container">
+        <!-- Left-Side Panel -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <h3>MONTHLY STATEMENT</h3>
+            <h4>March</h4>
+
+            <p><strong>Income</strong></p>
+            <ul>
+                <li>Gross Salary: <span id="gross-salary">$0.00</span></li>
+                <li>Income Tax: <span id="income-tax">$0.00</span></li>
+                <li>Net Income: <span id="net-income">$0.00</span></li>
+            </ul>
+
+            <p><strong>Expenses</strong></p>
+            <ul>
+                <li>Food: <span id="food-expense">$0.00</span></li>
+                <li>Housing: <span id="housing-expense">$0.00</span></li>
+                <li>Transport: <span id="transport-expense">$0.00</span></li>
+                <li>Slime Repellent: <span id="slime-expense">$0.00</span></li>
+                <li><strong>Total Expenses: <span id="total-expenses">$0.00</span></strong></li>
+            </ul>
+
+            <p><strong>Checking Account: <span id="checking-account">$0.00</span></strong></p>
+            <p><strong>Total Cash: <span id="total-cash">$0.00</span></strong></p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>
+                March: Housing
+                <span class="info-icon" onclick="toggleInfoPanel()">ⓘ</span>
+            </h1>
+
+            <div id="info-panel" class="info-panel">
+                <div class="info-content">
+                    <span class="close-btn" onclick="toggleInfoPanel()">&times;</span>
+                    <h3>What is the Difference Between Renting and Buying?</h3>
+                    <p>Renting and buying are two different ways to secure a place to live. When you rent, you pay a landlord a fixed amount each month to live in a property. When you buy, you purchase the property and typically pay a mortgage each month to a lender until the loan is paid off.</p>
+                    <h3>Why Does This Matter?</h3>
+                    <p>Choosing between renting and buying depends on your financial situation, lifestyle, and long-term goals. Here are some key points to consider:</p>
+                    <ul>
+                        <li><strong>Renting:</strong>
+                            <ul>
+                                <li>Flexibility: Easier to move if your job or lifestyle changes.</li>
+                                <li>Maintenance: Landlord is usually responsible for repairs and maintenance.</li>
+                                <li>No Down Payment: Typically requires a security deposit, but no large down payment.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Buying:</strong>
+                            <ul>
+                                <li>Investment: Building equity in a property that can appreciate in value.</li>
+                                <li>Stability: More control over your living situation and long-term housing costs.</li>
+                                <li>Down Payment: Requires a significant upfront payment, usually 20% of the purchase price.</li>
+                                <li>Interest Rates: The cost of borrowing money, which affects your monthly mortgage payment.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>Down Payments and Interest Rates</h3>
+                    <p>When buying a house, a down payment is the initial amount you pay upfront. The remaining balance is financed through a mortgage. Interest rates determine the cost of borrowing money and affect your monthly mortgage payment.</p>
+                    <p>A higher down payment can lower your monthly mortgage payment and may help you avoid private mortgage insurance (PMI). Lower interest rates can also reduce your monthly payment and the total amount of interest paid over the life of the loan.</p>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://i.imgur.com/umEojvS.jpeg" alt="Housing Photo" style="width:120px; height:120px; margin-right: 15px;">
+                    </td>
+                    <td>
+                        <p>The smell at the Knab youth hostel is more than you can stand! But there's hope. Since real estate prices rise every day on Knab, there's a good chance you could buy a house today and sell it for a profit on July 3rd. Can you afford a house with a great view of the asteroid belt? Or should you reduce your expenses and buy a smaller place in Shadowy Crater Number 13? Use the <strong>Home Buyer’s Calculating Tool</strong> below to find out what you can afford and take a look at the Knab Times for a listing of houses you can afford.</p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Affordability Calculation Form -->
+            <div id="housing-calculator">
+                <h2>Home Buyer's Calculating Tool</h2>
+
+                <p>To find out how much you can afford to spend on a house, fill in the correct dollar amounts below. Then press the <strong>calculate</strong> button for your personalized answer.</p>
+
+                <table>
+                    <tr>
+                        <td>Gross salary</td>
+                        <td id="march-gross-income">$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly transportation costs</td>
+                        <td id="march-transport-cost">$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Current monthly housing costs</td>
+                        <td id="march-housing-cost">$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly slime repellent costs</td>
+                        <td id="march-slime-cost">$0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Anticipated interest rate</td>
+                        <td>6.0%</td>
+                    </tr>
+                    <tr>
+                        <td>Down payment amount</td>
+                        <td><input type="number" id="downPayment" value="500" min="0"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <p>Take a look at your total cash amount in your monthly statement. The more money you put down on the house now, the lower your monthly <span style="text-decoration:underline;">mortgage</span> payment will be. But don't use all your cash. Save some for unexpected expenses.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Term of loan</td>
+                        <td>
+                            <input type="number" id="loanTerm" value="30" min="1"> years
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <p>Even though you plan to sell your house in the short term, you need to choose your loan payment term. Your monthly payments will be lower if you spread them out over a longer period of time, but you will also be paying interest for a longer period of time. Try experimenting with different settings.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Monthly homeowner's <span style="text-decoration:underline;">insurance</span></td>
+                        <td>$20/month</td>
+                    </tr>
+                    <tr>
+                        <td>Anticipated property tax rate per $1000</td>
+                        <td>34</td>
+                    </tr>
+                </table>
+                <button onclick="calculateHouseAffordability()">Calculate House Affordability</button>
+            </div>
+
+            <!-- Results of Affordability -->
+            <div id="housing-results" style="display:none;">
+                <h2>Housing Options</h2>
+                <p>You can afford a monthly mortgage payment of: <span id="affordable-monthly"></span></p>
+                <p>You can afford a house (approx.): <span id="affordable-house"></span></p>
+                <p>Choose a housing option below:</p>
+                <div id="housing-selection">
+                    <!-- Rent option (always visible) -->
+                    <div class="housing-option" id="rent-option">
+                        <h3>Rent a contemporary two-bedroom apartment in the heart of bustling downtown Knob City. His and hers built-in de-slimer stalls. Partial view of Galaxy 4! $650 <br><u>NOTE:</u>$750 penalty for breaking the lease in less than the year lease.</h3>
+                        <button onclick="selectHousing('rent', 0, 650)">Select</button>
+                    </div>
+                
+                    <!-- Basic house option -->
+                    <div class="housing-option" id="house-50k">
+                        <h3>Cozy two-bedroom contemporary in newer section of Shadowy Crater 13. New outdoor lighting. Heated indoor fungal pool! $50,000</h3>
+                        <button onclick="selectHousing('buy', 10000, 476.04)">Select</button>
+                    </div>
+                
+                    <!-- Mid-tier house option -->
+                    <div class="housing-option" id="house-64k">
+                        <h3>Three-bedroom traditional outerspace style home in quiet suburban neighborhood. Finished basement with six-person meteor shower shelter. $70,000</h3>
+                        <button onclick="selectHousing('buy', 14000, 583.33)">Select</button>
+                    </div>
+                
+                    <!-- Luxury house option -->
+                    <div class="housing-option" id="house-85k">
+                        <h3>Best view of the asteroid belt from this ultra-modern future theme home. Three luxurious sleeping chambers. Oxygen bar. Great for entertaining! $85,000</h3>
+                        <button onclick="selectHousing('buy', 17000, 736.88)">Select</button>
+                    </div>
+                </div>
+            </div>
+            <div id="event-message" style="display: none; border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+                <p id="event-text"></p>
+            </div>
+            <!-- Final March Results -->
+            <div id="march-final" style="display:none;">
+                <h2>March Decision</h2>
+                <p>Housing Chosen: <span id="chosen-housing"></span></p>
+                <p>Down Payment: <span id="chosen-down"></span></p>
+                <p>Monthly Housing Cost: <span id="chosen-monthly"></span></p>
+                <p>Updated Checking Balance: <span id="march-checking"></span></p>
+                <button onclick="proceedToApril()">Continue to April</button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+</body>
+</html>

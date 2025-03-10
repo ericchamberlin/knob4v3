@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape From Knob - June</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .payment-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .payment-section img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+
+        .payment-section .description {
+            flex-grow: 1;
+        }
+
+        .payment-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .payment-buttons button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 250px;
+        }
+
+        .payment-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .confirmation-message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #020202;
+        }
+    </style>
+</head>
+<body onload="initJune()">
+    <div class="container">
+        <!-- Left-Side Panel -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <h3>MONTHLY STATEMENT</h3>
+            <h4>June</h4>
+
+            <p><strong>Income</strong></p>
+            <ul>
+                <li>Gross Salary: <span id="gross-salary">$0.00</span></li>
+                <li>Income Tax: <span id="income-tax">$0.00</span></li>
+                <li>Net Income: <span id="net-income">$0.00</span></li>
+            </ul>
+
+            <p><strong>Expenses</strong></p>
+            <ul>
+                <li>Food: <span id="food-expense">$0.00</span></li>
+                <li>Housing: <span id="housing-expense">$0.00</span></li>
+                <li>Transport: <span id="transport-expense">$0.00</span></li>
+                <li>Slime Repellent: <span id="slime-expense">$0.00</span></li>
+                <li><strong>Total Expenses: <span id="total-expenses">$0.00</span></strong></li>
+            </ul>
+
+            <p><strong>Checking Account: <span id="checking-account">$0.00</span></strong></p>
+            <p><strong>Total Cash: <span id="total-cash">$0.00</span></strong></p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>
+                June: Paying for Extra Expenses
+                <span class="info-icon" onclick="toggleInfoPanel()">ⓘ</span>
+            </h1>
+
+            <div id="info-panel" class="info-panel">
+                <div class="info-content">
+                    <span class="close-btn" onclick="toggleInfoPanel()">&times;</span>
+                    <h3>How to Pay for Extra Expenses</h3>
+                    <p>When faced with extra expenses, you have several options for payment. Each option has its own advantages and disadvantages.</p>
+                    <h3>Using Credit</h3>
+                    <p>Using a credit card allows you to make purchases and pay for them later. This can be convenient for managing cash flow, but it comes with the risk of accumulating debt if you don't pay off the balance in full each month.</p>
+                    <ul>
+                        <li><strong>Pros:</strong>
+                            <ul>
+                                <li>Convenience: Easy to use for purchases.</li>
+                                <li>Rewards: Some credit cards offer rewards or cashback.</li>
+                                <li>Build Credit: Responsible use can improve your credit score.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cons:</strong>
+                            <ul>
+                                <li>Interest Charges: High interest rates if the balance is not paid in full.</li>
+                                <li>Debt Risk: Easy to accumulate debt if spending is not managed.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>Using Savings</h3>
+                    <p>Using savings to pay for extra expenses means you are using money you have already set aside. This avoids the risk of debt but may deplete your emergency fund.</p>
+                    <ul>
+                        <li><strong>Pros:</strong>
+                            <ul>
+                                <li>No Debt: Avoids the risk of accumulating debt.</li>
+                                <li>Interest-Free: No additional costs from interest charges.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cons:</strong>
+                            <ul>
+                                <li>Depletes Savings: Reduces your emergency fund or savings for other goals.</li>
+                                <li>Limited Funds: May not have enough savings to cover the expense.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>Taking Out a Loan</h3>
+                    <p>Taking out a loan allows you to spread the cost of the expense over time. This can be useful for large purchases, but it comes with the cost of interest.</p>
+                    <ul>
+                        <li><strong>Pros:</strong>
+                            <ul>
+                                <li>Manageable Payments: Spreads the cost over time, making it more affordable.</li>
+                                <li>Fixed Payments: Predictable monthly payments.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cons:</strong>
+                            <ul>
+                                <li>Interest Costs: Additional cost from interest charges.</li>
+                                <li>Debt Risk: Accumulates debt that needs to be repaid.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>Working for Extra Pay</h3>
+                    <p>Working for extra pay allows you to earn additional income to cover the expense. This avoids debt but requires additional effort and time.</p>
+                    <ul>
+                        <li><strong>Pros:</strong>
+                            <ul>
+                                <li>No Debt: Avoids the risk of accumulating debt.</li>
+                                <li>Increased Income: Earns additional income to cover the expense.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cons:</strong>
+                            <ul>
+                                <li>Time and Effort: Requires additional work and time commitment.</li>
+                                <li>Limited Availability: May not always be an option.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://i.imgur.com/xAuT6kH.jpeg" alt="Vacation Image" style="width:100px; height:100px; margin-right: 15px;">
+                    </td>
+                    <td>
+                        <p>Vacation time! Will you spend $950 on a vacation at Mold Mountain or skip it for extra pay? If you take the vacation, how will you pay for it?</p>
+                    </td>
+                </tr>
+            </table>
+
+            <h2>Payment Options</h2>
+
+            <!-- Payment Options -->
+            <div class="payment-buttons">
+                <div class="payment-section">
+                    <div class="description">
+                        <p>Charge It (Credit Card):</p>
+                    </div>
+                    <button onclick="handleJunePayment('credit')">Charge $950</button>
+                </div>
+
+                <div class="payment-section">
+                    <div class="description">
+                        <p>Take Out a Loan (10.5% interest assumed for later):</p>
+                    </div>
+                    <button onclick="handleJunePayment('loan')">Loan $950</button>
+                </div>
+
+                <div class="payment-section">
+                    <div class="description">
+                        <p>Savings (Pay from Checking):</p>
+                    </div>
+                    <button onclick="handleJunePayment('savings')">Use Savings</button>
+                </div>
+
+                <div class="payment-section">
+                    <div class="description">
+                        <p>Skip Vacation for Extra Pay:</p>
+                    </div>
+                    <button onclick="handleJunePayment('work')">Work for Extra Pay (+$950)</button>
+                </div>
+            </div>
+
+            <div id="confirmation-section" class="confirmation-message" style="display:none;">
+                <p id="confirmation-message"></p>
+                <button id="proceed-to-july-button">Proceed to July</button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape From Knob - July</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="initJuly()">
+    <div class="container">
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <h3>MONTHLY STATEMENT</h3>
+            <h4>July</h4>
+            
+            <p><strong>Income</strong></p>
+            <ul>
+                <li>Gross Salary: <span id="gross-salary">$0.00</span></li>
+                <li>Income Tax: <span id="income-tax">$0.00</span></li>
+                <li>Net Income: <span id="net-income">$0.00</span></li>
+            </ul>
+
+            <p><strong>Checking Account: <span id="checking-account">$0.00</span></strong></p>
+            <p><strong>Total Cash: <span id="total-cash">$0.00</span></strong></p>
+        </div>
+
+        <div class="main-content">
+            <h1>July - Final Outcome</h1>
+            <img src="https://i.imgur.com/SxUQHyt.jpeg" alt="July Top Graphic" style="width: 150px; height: 150px; margin: 0 auto; display: block;">
+            <p id="summary-text">Today is the day for this year’s only departing flight from Knab! Quick, sell your house, cash in your investments, and pay off all your debts. It’s time to see if you have enough money to buy your $10,000, one-way ticket home!</p>
+
+            <button id="start-july-steps" onclick="initJulySteps()">Review Financial Decisions</button>
+            <!-- Steps -->
+            <div id="step-details" style="display: none;">
+                <h2 id="step-title"></h2>
+                <p id="step-description"></p>
+                <p>Balance: <span id="step-balance"></span></p>
+                <button onclick="nextStep()">Continue</button>
+              </div>
+<!-- Final Outcome Overlay -->
+<div id="final-overlay" class="info-panel" style="display: none;">
+    <div class="info-content">
+        <span class="close-btn" onclick="toggleFinalOverlay()">&times;</span>
+        <h2>Final Outcome</h2>
+        <img id="final-image" src="" alt="Final Outcome Image" style="max-width: 100%; height: auto;">
+        <p id="final-message-overlay"></p>
+    </div>
+</div>
+
+<!-- Dark background overlay -->
+<div id="overlay" class="overlay" onclick="toggleFinalOverlay()"></div>
+            <!-- Final Results -->
+            <div id="final-results" style="display: none;">
+                <p id="final-message"></p>
+            </div>
+            
+            <!-- Buy Me a Coffee Link -->
+            <div style="text-align: center; margin-top: 30px; padding: 20px;">
+                <a href="https://buymeacoffee.com/xrtoolsfored" target="_blank" style="color: #007bff; text-decoration: none;">
+                    Support the Developer ☕
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

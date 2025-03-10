@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape From Knob - January</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body onload="initJanuary()">
+    <div class="container">
+        <!-- Left-Side Panel (Personal Info) -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <p><strong>MONTHLY STATEMENT</strong></p>
+            <p><strong>January</strong></p>
+            <p>Gross Salary: <span id="gross-salary">$0.00</span></p>
+            <p>Income Tax: <span id="income-tax">$0.00</span></p>
+            <p>Net Income: <span id="net-income">$0.00</span></p>
+            <p>Checking Account: <span id="checking-account">$0.00</span></p>
+            <p><strong>Total Cash:</strong> <span id="total-cash">$0.00</span></p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Add the image -->
+            <div class="header-image" style="text-align: center; margin-bottom: 20px;">
+                <img src="https://i.imgur.com/FnmbOYx.png" alt="Escape From Knob Image" style="height: 100px; width: 300px;">
+            </div>
+
+            <h1>Welcome to Knob!</h1>
+            <p>You’ve landed on Knob. While you're slowly getting used to the atmosphere, you need to quickly find a job. And because Knob's unemployment rate is a low 0.001%, you're offered two jobs right away.</p>
+            <p>Choose a job below and then complete the W-4 Form that appears after you've made your selection.</p>
+            <div id="job-selection">
+                <h3>Job #1</h3>
+                <p><strong>Company: Planetary Oxygen Canning Factory</strong></p>
+                <p>Position: Canister Assembly Technician</p>
+                <p>Salary: $18 per hour</p>
+                <p>Knob Blab: The Planetary Oxygen Canning Factory is known to pay a good wage starting out, but they are slow to give a raise.</p>
+                <button onclick="selectJob(3168)">I'll Take It</button>
+
+                <h3 style="margin-top:20px;">Job #2</h3>
+                <p><strong>Knob Hair Piece Harvesting Co.</strong></p>
+                <p>Position: Harvesting Supervisor</p>
+                <p>Salary: $12 per hour</p>
+                <p>Knob Blab: Knob Hair Piece Harvesting Co. tends to start an employee off at a lower wage, but is quick to offer raises to good employees.</p>
+                <button onclick="selectJob(2520)">I'll Take It</button>
+            </div>
+
+            <div id="w4-form" style="display:none; margin-top:20px;">
+                <h2>
+                    Fill Out Your W-4 Form
+                    <span class="info-icon" onclick="toggleInfoPanel()">ⓘ</span>
+                </h2>
+                <div id="info-panel" class="info-panel">
+                    <div class="info-content">
+                        <span class="close-btn" onclick="toggleInfoPanel()">&times;</span>
+                        <h3>What is a W-4 Form?</h3>
+                        <p>The W-4 form is an important document that helps your employer determine how much federal income tax to withhold from your paycheck. It’s like a guide for your employer to make sure you don’t pay too much or too little in taxes throughout the year. The amount of tax withheld depends on the number of allowances you claim on the form. More allowances usually mean less tax withheld, but fewer allowances mean more taxes are taken out upfront.</p>
+                        <h3>Why Does This Matter?</h3>
+                        <p>Think of it like a game of balancing. If you claim too many allowances and don’t have enough tax withheld, you might owe money to the government when you file your taxes at the end of the year. On the other hand, if too much is withheld, you’ll get a refund, but it also means you’ve been giving the government a loan for free! It’s all about finding the right balance to keep your finances steady throughout the year.</p>
+                        <h3>Example:</h3>
+                        <p>Imagine your paycheck is like a jar of coins. Each time you get paid, the government takes a handful of coins (taxes) from your jar based on the allowances you’ve claimed. If you claim a lot of allowances, the government takes fewer coins, but you might end up needing to give back some coins later. If you claim fewer allowances, the government takes more coins upfront, but you’ll likely get some of them returned during tax season. The goal is to make sure the number of coins taken matches what you owe, so you’re not caught off guard.</p>
+                    </div>
+                </div>
+                <p>Adjusting your allowances affects your monthly net pay due to tax withholding. The more allowances you claim, the less income tax your employer will withhold from your paycheck.</p>
+
+                <div id="allowances-section">
+                    <label for="allowance1">Enter 1 if you are a living being:</label>
+                    <select id="allowance1">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select><br><br>
+
+                    <label for="allowance2">Enter 1 if you have a dependent:</label>
+                    <select id="allowance2">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select><br><br>
+
+                    <label for="allowance3">Enter 1 for additional tax reduction:</label>
+                    <select id="allowance3">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select><br><br>
+
+                    <button onclick="calculateNetPay()">Calculate Net Pay</button>
+                </div>
+            </div>
+
+            <div id="results-section" style="display:none; margin-top:20px;">
+                <h2>Results</h2>
+                <p>Gross Income: <span id="result-gross"></span></p>
+                <p>Social Security Deduction: <span id="result-ss"></span></p>
+                <p>Income Tax Deduction: <span id="result-tax"></span></p>
+                <p><strong>Net Income: <span id="result-net"></span></strong></p>
+                <button onclick="proceedToFebruary()">Continue to February</button>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+</body>
+</html>

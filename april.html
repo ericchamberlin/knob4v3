@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Escape From Knob - April</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <style>
+        /* Flex Layout to keep personal-info on left, main-content on right */
+        .container {
+            display: flex;
+            align-items: flex-start; /* Align both panels at the top */
+            gap: 20px;               /* Spacing between panels */
+        }
+        .personal-info {
+            flex: 0 0 220px;        /* Fixed width for the left panel */
+        }
+        .main-content {
+            flex: 1;                /* The right panel takes remaining space */
+        }
+
+        /* Existing styling for car options, etc. */
+        .car-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .car-option img {
+            width: 200px;
+            height: 150px; /* Standardize the height */
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+        .car-details {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .calculator-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Ensures the March event container is off-white, not see-through */
+        #march-event-container {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .hovercraft {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .hovercraft img {
+            width: 200px;
+            height: 150px; /* Standardize the height */
+            margin-bottom: 10px;
+            border: 1px solid black;
+        }
+
+        .hovercraft button {
+            margin-top: 10px; /* Add space between the image and the button */
+        }
+
+        /* Center the buttons under the images */
+        .hovercraft {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hovercraft button {
+            margin-top: 10px;
+            align-self: center;
+        }
+
+        /* Style for the details section */
+        .hovercraft-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .hovercraft-details h3 {
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .hovercraft-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body onload="initApril()">
+
+    <div class="container">
+        <!-- Left-Side Panel -->
+        <div class="personal-info">
+            <h2>Personal Information</h2>
+            <h3 id="user-name"></h3>
+            <h3>MONTHLY STATEMENT</h3>
+            <h4>April</h4>
+
+            <p><strong>Income</strong></p>
+            <ul>
+                <li>Gross Salary: <span id="gross-salary">$0.00</span></li>
+                <li>Income Tax: <span id="income-tax">$0.00</span></li>
+                <li>Net Income: <span id="net-income">$0.00</span></li>
+            </ul>
+
+            <p><strong>Expenses</strong></p>
+            <ul>
+                <li>Food: <span id="food-expense">$0.00</span></li>
+                <li>Housing: <span id="housing-expense">$0.00</span></li>
+                <li>Transport: <span id="transport-expense">$0.00</span></li>
+                <li>Slime Repellent: <span id="slime-expense">$0.00</span></li>
+                <li><strong>Total Expenses: <span id="total-expenses">$0.00</span></strong></li>
+            </ul>
+
+            <p><strong>Checking Account: <span id="checking-account">$0.00</span></strong></p>
+            <p><strong>Total Cash: <span id="total-cash">$0.00</span></strong></p>
+        </div>
+
+        <!-- Right Panel (main-content) -->
+        <div class="main-content">
+
+            <!-- H1 at top of right panel -->
+            <h1>
+                April: Transportation
+                <span class="info-icon" onclick="toggleInfoPanel()">ⓘ</span>
+            </h1>
+
+            <div id="info-panel" class="info-panel">
+                <div class="info-content">
+                    <span class="close-btn" onclick="toggleInfoPanel()">&times;</span>
+                    <h3>What is the Difference Between Leasing and Buying?</h3>
+                    <p>Leasing and buying are two different ways to acquire a vehicle. When you lease, you pay a monthly fee to use the vehicle for a set period, usually with the option to buy it at the end of the lease. When you buy, you own the vehicle outright, either by paying the full price upfront or by financing it through a loan.</p>
+                    <h3>Why Does This Matter?</h3>
+                    <p>Choosing between leasing and buying depends on your financial situation, lifestyle, and long-term goals. Here are some key points to consider:</p>
+                    <ul>
+                        <li><strong>Leasing:</strong>
+                            <ul>
+                                <li>Lower Monthly Payments: Lease payments are typically lower than loan payments for buying.</li>
+                                <li>Flexibility: Easier to upgrade to a new vehicle at the end of the lease term.</li>
+                                <li>Maintenance: Often includes maintenance and repairs within the lease agreement.</li>
+                                <li>No Resale Hassle: You return the vehicle at the end of the lease term.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Buying:</strong>
+                            <ul>
+                                <li>Ownership: You own the vehicle and can modify it as you wish.</li>
+                                <li>Long-Term Savings: No more payments once the loan is paid off.</li>
+                                <li>Resale Value: You can sell the vehicle and potentially recoup some of the cost.</li>
+                                <li>Depreciation: The vehicle's value decreases over time, which can affect resale value.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>Depreciation</h3>
+                    <p>Depreciation is the loss in a vehicle's value over time due to wear and tear, age, and market conditions. New vehicles depreciate rapidly in the first few years, which can make leasing an attractive option for those who want to drive a new vehicle every few years without the hassle of reselling.</p>
+                    <p>When buying, it's important to consider the long-term cost of depreciation and how it will affect the vehicle's resale value. A vehicle that holds its value well can be a better investment in the long run.</p>
+                </div>
+            </div>
+
+            <!-- MARCH EVENT CONTAINER -->
+            <div id="march-event-container">
+                <p id="march-event-text" style="font-weight: bold;">
+                    [Event will appear here]
+                </p>
+                <button onclick="continueFromMarchEvent()">Continue</button>
+            </div>
+
+            <!-- CAR SECTION (Hidden until user clicks Continue) -->
+            <div id="car-section">
+                <table>
+                    <tr>
+                        <td>
+                            <img
+                                src="https://i.imgur.com/Zst8P30.jpeg"
+                                alt="Hovercar Image"
+                                style="width:100px; height:100px; margin-right: 15px;"
+                            />
+                        </td>
+                        <td>
+                            <p>
+                                Transportation on Knab is nasty. And walking anywhere is a
+                                hazard because of all the slippery, crisscrossing slime
+                                trails the Knabians leave behind...
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Car Options -->
+                <div id="hovercraft-selection">
+                    <!-- Hovercraft 1 -->
+                    <div class="hovercraft">
+                        <h3>X2001</h3>
+                        <img
+                            src="https://i.imgur.com/bgmfNw3.jpeg"
+                            alt="X2001 Hovercraft"
+                        />
+                        <button onclick="selectHovercraft('X2001')">
+                            View Details
+                        </button>
+                    </div>
+
+                    <!-- Hovercraft 2 -->
+                    <div class="hovercraft">
+                        <h3>Force Five Hovercraft</h3>
+                        <img
+                            src="https://i.imgur.com/EBlicEG.jpeg"
+                            alt="Force Five Hovercraft"
+                        />
+                        <button onclick="selectHovercraft('Force Five Hovercraft')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hovercraft Details Section -->
+                <div id="hovercraft-details" style="display: none;">
+                    <h3 id="hovercraft-title"></h3>
+                    <div id="hovercraft-info"></div>
+                    <div class="hovercraft-details-buttons">
+                        <button id="buy-button" onclick="chooseOption('buy')">
+                            Buy Car
+                        </button>
+                        <button id="lease-button" onclick="chooseOption('lease')">
+                            Lease Car
+                        </button>
+                        <button onclick="goBack()">Go Back</button>
+                    </div>
+                </div>
+
+                <!-- Confirmation Section -->
+                <div id="confirmation-section" style="display: none;">
+                    <h3 id="confirmation-title"></h3>
+                    <p id="confirmation-details"></p>
+                    <p id="confirmation-message" style="color: red;"></p>
+                    <button onclick="confirmChoice()">Confirm</button>
+                    <button onclick="goBackToDetails()">Go Back</button>
+                </div>
+
+                <!-- Calculator Section -->
+                <div id="calculator-section" style="display: none;">
+                    <h2>Hovercraft Leasing or Buying? Calculator</h2>
+                    <p>
+                        Enter the appropriate numbers below, but do not
+                        use any dollar signs or commas. Then press the
+                        <strong>calculate</strong> button to learn if
+                        it's better to lease or buy your hovercraft of choice.
+                    </p>
+                    <div class="calculator-container">
+                        <h3>Cost to Purchase</h3>
+                        <table>
+                            <tr>
+                                <td>Purchase Price:</td>
+                                <td id="purchase-price-display">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Down Payment:</td>
+                                <td>
+                                    <input
+                                        type="number"
+                                        id="downPayment"
+                                        value="2000"
+                                        min="0"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Anticipated interest rate:</td>
+                                <td>
+                                    <select id="interestRateSelect">
+                                        <option value="8.5">8.5%</option>
+                                        <option value="9.5">9.5%</option>
+                                        <option value="10.5">10.5%</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Term:</td>
+                                <td>
+                                    <select id="termSelect">
+                                        <option value="1">1 year</option>
+                                        <option value="2">2 years</option>
+                                        <option value="3" selected>3 years</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="calculator-container">
+                        <h3>Cost to Lease</h3>
+                        <table>
+                            <tr>
+                                <td>Down payment:</td>
+                                <td id="lease-down-display">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Monthly payment:</td>
+                                <td id="monthly-lease-display">$0.00</td>
+                            </tr>
+                            <tr>
+                                <td>Term:</td>
+                                <td id="lease-term-display">2 years</td>
+                            </tr>
+                            <tr>
+                                <td>Acquisition fees:</td>
+                                <td id="acquisition-fees-display">$250.00</td>
+                            </tr>
+                            <tr>
+                                <td>Annual Mileage Allowance:</td>
+                                <td id="annual-mileage-display">12,000</td>
+                            </tr>
+                            <tr>
+                                <td>Cost per Mile Over Allowance:</td>
+                                <td id="per-mile-display">.15¢</td>
+                            </tr>
+                            <tr>
+                                <td>Cost to purchase at lease end:</td>
+                                <td id="purchase-at-end-display">$12,000</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button onclick="calculateCarCost()">Calculate</button>
+                </div>
+
+                <!-- Final Decision Section -->
+                <div id="april-final" style="display:none;">
+                    <h2>April Decision</h2>
+                    <p>Vehicle Selected: <span id="chosen-vehicle"></span></p>
+                    <p>Type: <span id="chosen-type"></span></p>
+                    <p>Down Payment: <span id="chosen-down"></span></p>
+                    <p>Monthly Payment: <span id="chosen-monthly"></span></p>
+                    <p>Updated Checking Balance: <span id="april-checking"></span></p>
+                    <button onclick="proceedToMay()">Continue to May</button>
+                </div>
+            </div>
+            <!-- END #car-section -->
+        </div>
+        <!-- END .main-content -->
+    </div>
+    <!-- END .container -->
+    <div id="overlay" class="overlay"></div>
+</body>
+</html>
