@@ -1709,7 +1709,34 @@ function calculateFinalTax() {
                 "| Allowances:", totalAllowances);
     return finalTaxReconciliation;
 }
+function finalizeJuly() {
+    // Hide the normal final results <div> 
+    document.getElementById("step-details").style.display = "none";
+    document.getElementById("final-results").style.display = "none";
 
+    // Decide which image + text
+    let finalMsg = "";
+    let finalImage = "";
+    if (gameState.currentBalance >= 10000) {
+        finalMsg = `Congratulations! You have $${gameState.currentBalance.toFixed(2)}, enough for the $10,000 ticket home!<br><br>
+            <button onclick="window.location.href='/'" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Play Again</button>`;
+        finalImage = "https://i.imgur.com/M9A3949.jpeg"; // leaving Knob
+    } else {
+        finalMsg = `Unfortunately, you only have $${gameState.currentBalance.toFixed(2)}, not enough for the $10,000 ticket. You're stuck on Knob!<br><br>
+            <button onclick="window.location.href='/'" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Play Again</button>`;
+        finalImage = "https://i.imgur.com/Fn2dl9O.jpeg"; // stuck on Knob
+    }
+
+    // Insert that text & image into the overlay
+    document.getElementById("final-message-overlay").innerHTML = finalMsg;
+    document.getElementById("final-image").src = finalImage;
+
+    // Show the overlay
+    toggleFinalOverlay();
+
+    // Finally, save the game state
+    saveGameState();
+}
 
 
 
@@ -1743,7 +1770,7 @@ function nextStep() {
     }
 }
 
-
+//1
 function toggleFinalOverlay() {
     const finalOverlay = document.getElementById('final-overlay');
     const overlay = document.getElementById('overlay');
@@ -1759,37 +1786,31 @@ function toggleFinalOverlay() {
     } else {
         finalOverlay.style.display = 'none';
         overlay.style.display = 'none';
+        // Reset game state when overlay is closed
+        localStorage.clear();
     }
 }
 
+//2
+function toggleFinalOverlay() {
+    const finalOverlay = document.getElementById('final-overlay');
+    const overlay = document.getElementById('overlay');
+    
+    if (!finalOverlay || !overlay) {
+        console.error("Could not find elements #final-overlay or #overlay in the DOM.");
+        return;
+    }
 
-function finalizeJuly() {
-    // Hide the normal final results <div> 
-    document.getElementById("step-details").style.display = "none";
-    document.getElementById("final-results").style.display = "none";
-
-    // Decide which image + text
-    let finalMsg = "";
-    let finalImage = "";
-    if (gameState.currentBalance >= 10000) {
-        finalMsg = `Congratulations! You have $${gameState.currentBalance.toFixed(2)}, enough for the $10,000 ticket home!`;
-        finalImage = "https://i.imgur.com/M9A3949.jpeg"; // leaving Knob
+    if (finalOverlay.style.display === 'none' || finalOverlay.style.display === '') {
+        finalOverlay.style.display = 'block';
+        overlay.style.display = 'block';
     } else {
-        finalMsg = `Unfortunately, you only have $${gameState.currentBalance.toFixed(2)}, not enough for the $10,000 ticket. You're stuck on Knob!`;
-        finalImage = "https://i.imgur.com/Fn2dl9O.jpeg"; // stuck on Knob
+        finalOverlay.style.display = 'none';
+        overlay.style.display = 'none';
+        // Reset game state when overlay is closed
+        localStorage.clear();
     }
-
-    // Insert that text & image into the overlay
-    document.getElementById("final-message-overlay").textContent = finalMsg;
-    document.getElementById("final-image").src = finalImage;
-
-    // Show the overlay
-    toggleFinalOverlay();
-
-    // Finally, save the game state
-    saveGameState();
 }
-
 
 /* Placeholder Functions */
 
